@@ -28,7 +28,6 @@ Dish_Names = [
 app = ctk.CTk()
 app.geometry("400x300")
 app.title("Bizarre Recipe GUI")
-app.resizable(False, False)
 app.iconbitmap("logo.ico")
 
 
