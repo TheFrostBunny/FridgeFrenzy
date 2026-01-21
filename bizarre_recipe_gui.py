@@ -41,7 +41,6 @@ entry.pack(pady=10)
 text_box = ctk.CTkTextbox(app, width=350, height=100)
 text_box.pack(pady=10)
 
-
 def generate_recipe(ingredients):
     style = random.choice(Cooking_Styles)
     twist = random.choice(Flavor_Twists)
@@ -55,21 +54,45 @@ def generate_recipe(ingredients):
         f"Happy Cooking! 🍳"
     )
 
-
 def generate():
     ingredients = [item.strip() for item in entry.get().split(",") if item.strip()]
-
     text_box.delete("0.0", "end")
 
     if not ingredients:
-        text_box.insert("0.0", "Please enter at least one ingredient.")
+        text_box.insert("0.0", "⚠️ Please enter at least one ingredient!")
         return
 
     recipe = generate_recipe(ingredients)
     text_box.insert("0.0", recipe)
 
+def setup_gui():
+    app = ctk.CTk()
+    app.geometry("450x400")
+    app.title("🥪 Bizarre Recipe Generator")
+    app.resizable(False, False)
+    try:
+        app.iconbitmap("logo.ico")
+    except:
+        pass
 
-button = ctk.CTkButton(app, text="Generate Recipe", command=generate)
-button.pack(pady=10)
+    title_label = ctk.CTkLabel(app, text="Welcome to the Bizarre Recipe Generator!", font=("Arial", 16, "bold"))
+    title_label.pack(pady=(20,10))
 
-app.mainloop()
+    ctk.CTkLabel(app, text="Enter ingredients (comma-separated):").pack(pady=(5,0))
+    global entry
+    entry = ctk.CTkEntry(app, width=350)
+    entry.pack(pady=10)
+
+    global text_box
+    text_box = ctk.CTkTextbox(app, width=400, height=150)
+    text_box.pack(pady=10)
+
+    generate_btn = ctk.CTkButton(app, text="Generate Recipe 🤪", command=generate)
+    generate_btn.pack(pady=10)
+
+    return app
+
+if __name__ == "__main__":
+    app = setup_gui()
+    app.mainloop()
+
