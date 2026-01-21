@@ -29,7 +29,7 @@ app = ctk.CTk()
 app.geometry("400x300")
 app.title("Bizarre Recipe GUI")
 app.iconbitmap("logo.ico")
-
+app.resizable(True, True)
 
 label = ctk.CTkLabel(app, text="Welcome to the Bizarre Recipe Generator!")
 label.pack(pady=20)
